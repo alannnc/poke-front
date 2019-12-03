@@ -116,7 +116,9 @@ class Index extends Component {
 }
 
 Index.getInitialProps = async ctx => {
-  const { pokemons } = await ctx.store.dispatch(getPokemons());
+  const { pokemons } = await ctx.store.dispatch(
+    getPokemons({ isServer: true })
+  );
   return { pokemons };
 };
 

@@ -3,8 +3,10 @@ import actions from "./index";
 
 const httpService = new Http();
 
-export const getPokemons = ({ page } = {}) => async dispatch => {
-  dispatch({ type: actions.INIT_POKEMONS });
+export const getPokemons = ({ page, isServer } = {}) => async dispatch => {
+  if (isServer) {
+    dispatch({ type: actions.INIT_POKEMONS });
+  }
   let currentPage = page ? page : 0;
   let response;
   try {

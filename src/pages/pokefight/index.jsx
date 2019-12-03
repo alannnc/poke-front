@@ -163,7 +163,7 @@ class PokeFightComponent extends Component {
                   return (
                     <Button
                       key={index}
-                      style={{ fontSize: "0.5vw", margin: "5px 5px" }}
+                      style={{ fontSize: 12, margin: "5px 5px" }}
                       onClick={() => {
                         this.battleResult(move.name);
                       }}
