@@ -5,8 +5,9 @@ import { Typography, Button, createStyles } from "@material-ui/core";
 import Layout from "../../components/layout";
 import PokemonData from "./components/pokemonData";
 import { getPokemonFighters } from "../../redux/actions/pokemonActions";
+import Link from "next/link";
 
-const styles = theme =>
+const styles = () =>
   createStyles({
     container: {
       height: 500,
@@ -152,7 +153,9 @@ class PokeFightComponent extends Component {
                   </Button>
                   <Button style={{ margin: "10px 15px" }}>Items</Button>
                   <Button style={{ margin: "10px 15px" }}>Pokemon</Button>
-                  <Button style={{ margin: "10px 15px" }}>Run</Button>
+                  <Link href="/">
+                    <Button style={{ margin: "10px 15px" }}>Run</Button>
+                  </Link>
                 </>
               )}
               {fightState === "fight" &&

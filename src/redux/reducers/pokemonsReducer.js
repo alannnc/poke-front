@@ -13,7 +13,11 @@ export default (state = pokemonsInitialState, action) => {
   switch (action.type) {
     case actions.INIT_POKEMONS:
       return {
-        ...state
+        ...state,
+        data: {
+          ...state.data,
+          pokemons: []
+        }
       };
     case actions.GET_POKEMONS:
       return {
