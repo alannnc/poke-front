@@ -9,13 +9,14 @@ export class Http {
     // If request is NOT SSR
     if (typeof document !== "undefined") {
       // Use config url with custom port
-      baseUrl = `http://localhost:3000/api`;
+      baseUrl = clientConfig.proxyUrl;
     }
 
     const axiosConfigRequest = {
-      baseURL: `${baseUrl}/`,
+      baseURL: baseUrl,
       headers: {
-        Accept: "application/json"
+        Accept: "application/json",
+        "Access-Control-Allow-Origin": "*"
       }
     };
     this.http = axios.create(axiosConfigRequest);

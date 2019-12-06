@@ -1,3 +1,12 @@
 {
-  "name": "poke-front"
+  "env": {
+    "BASE_URL": "@poke-front-base-url",
+    "BASE_PORT": "@poke-front-base-port",
+    "PROXY_URL": "@poke-front-proxy-url"
+  },
+  "routes": [
+    { "src": "/api/pokemons", "dest": "http://167.172.222.243:3005/pokemons" },
+    { "src": "/pokefight" },
+    { "src": "/api.fight", "dest": "http://167.172.222.243:3005/fight" }
+  ]
 }

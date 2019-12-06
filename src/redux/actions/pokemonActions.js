@@ -10,7 +10,9 @@ export const getPokemons = ({ page, isServer } = {}) => async dispatch => {
   let currentPage = page ? page : 0;
   let response;
   try {
-    response = await httpService.get(`/?page=${currentPage}`);
+    response = await httpService.get(`/pokemons`, {
+      params: { page: currentPage }
+    });
   } catch (error) {
     return dispatch(retrieveGetPokemonsError(error));
   }

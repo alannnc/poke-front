@@ -36,7 +36,7 @@ const PokemonRowComponent = props => {
       {!didLoad && (
         <img
           className={classes.whileLoadingImage}
-          src="https://uc1453dfb63fb8e3ee14a89cafb7.dl.dropboxusercontent.com/cd/0/inline/AthMyQonitJoab7MPUabZOspOWtMesz4o5aR25iiIZtkJKhH6BMOgyfBWNxc3Kvkx7QfYo89TuyzLrOlqf6IYfhDfxkfqSXNOC5FT5uIzcrn1GRwMEkMP0Z8w4TXyZ4qNqU/file#"
+          src="https://uccacd4e71ecbab123e4d4688837.dl.dropboxusercontent.com/cd/0/inline/AtvOw5oTB-yxY9LcWNPzRvDaibmHEtT0GKP8HUzvA6TIWQRpmAN7su1eNi4xpeDVUR6qm14vE3e_tzBLF5_l5MoVq5JluB0ovRIiZcK-POJqw5IorQnkNy4ohlxL0lVMd7A/file#"
           alt="Loading"
         />
       )}
