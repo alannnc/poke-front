@@ -3,7 +3,7 @@ import { Typography } from "@material-ui/core";
 import { createStyles } from "@material-ui/core/styles";
 import { withStyles } from "@material-ui/styles";
 
-const styles = createStyles(() => ({
+const styles = createStyles(theme => ({
   container: {
     display: "flex",
     flexDirection: "column",
@@ -20,6 +20,13 @@ const styles = createStyles(() => ({
   },
   itemImage: {
     alignSelf: "center"
+  },
+  pokemonName: {
+    textTransform: "capitalize",
+    fontSize: 12,
+    [theme.breakpoints.up("sm")]: {
+      fontSize: 14
+    }
   }
 }));
 
@@ -40,12 +47,7 @@ const PokemonRowComponent = props => {
           alt="Loading"
         />
       )}
-      <Typography
-        style={{ textTransform: "capitalize" }}
-        onClick={() => setDidLoad(!didLoad)}
-      >
-        {props.name}
-      </Typography>
+      <Typography className={classes.pokemonName}>{props.name}</Typography>
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import { Component, useState } from "react";
+import { Component } from "react";
 import { connect } from "react-redux";
 import { withStyles } from "@material-ui/styles";
 import { Typography, Button, createStyles } from "@material-ui/core";
@@ -6,26 +6,40 @@ import Layout from "../../components/layout";
 import PokemonData from "./components/pokemonData";
 import { getPokemonFighters } from "../../redux/actions/pokemonActions";
 import Link from "next/link";
+import theme from "../../utils/theme";
 
-const styles = () =>
+const styles = theme =>
   createStyles({
     container: {
-      height: 500,
-      position: "relative",
-      backgroundImage:
-        'url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/dccf9b3c-e552-4a19-ba30-2b86db58123e/dcewmcd-61655f8d-e893-45cc-9886-c8d1c9503371.png/v1/fill/w_1024,h_527,q_80,strp/forest_battle_background_by_aamatniekss_dcewmcd-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NTI3IiwicGF0aCI6IlwvZlwvZGNjZjliM2MtZTU1Mi00YTE5LWJhMzAtMmI4NmRiNTgxMjNlXC9kY2V3bWNkLTYxNjU1ZjhkLWU4OTMtNDVjYy05ODg2LWM4ZDFjOTUwMzM3MS5wbmciLCJ3aWR0aCI6Ijw9MTAyNCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.5dxJyWYKf42J-QDbSwroSssDATAqhLtnHsYLc-XBHNo")'
+      height: "100%",
+      position: "relative"
+      // backgroundImage:
+      // 'url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/dccf9b3c-e552-4a19-ba30-2b86db58123e/dcewmcd-61655f8d-e893-45cc-9886-c8d1c9503371.png/v1/fill/w_1024,h_527,q_80,strp/forest_battle_background_by_aamatniekss_dcewmcd-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NTI3IiwicGF0aCI6IlwvZlwvZGNjZjliM2MtZTU1Mi00YTE5LWJhMzAtMmI4NmRiNTgxMjNlXC9kY2V3bWNkLTYxNjU1ZjhkLWU4OTMtNDVjYy05ODg2LWM4ZDFjOTUwMzM3MS5wbmciLCJ3aWR0aCI6Ijw9MTAyNCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.5dxJyWYKf42J-QDbSwroSssDATAqhLtnHsYLc-XBHNo")'
     },
     pokemonImage: {
-      height: 300,
-      position: "absolute"
+      position: "absolute",
+      [theme.breakpoints.up("sm")]: {
+        height: "50%"
+      },
+      [theme.breakpoints.up("md")]: {
+        height: 300
+      }
     },
     leftPokemonImage: {
-      top: 200,
-      left: 150
+      bottom: "12%",
+      left: "20%",
+      [theme.breakpoints.up("md")]: {
+        top: 165,
+        left: 170
+      }
     },
     rightPokemonImage: {
-      top: 55,
-      right: 60
+      top: "20%",
+      right: "20%",
+      [theme.breakpoints.up("md")]: {
+        top: 25,
+        right: 140
+      }
     },
     interactiveBox: {
       backgroundColor: "black",
@@ -36,27 +50,51 @@ const styles = () =>
       borderRadius: 5,
       padding: "5px 15px",
       display: "flex",
-      flexDirection: "row",
-      justifyContent: "space-around"
+      flexDirection: "column",
+      justifyContent: "space-around",
+      [theme.breakpoints.up("md")]: {
+        flexDirection: "row"
+      }
     },
     textInteractiveBox: {
       backgroundColor: "#62AAA4",
-      width: "60%",
-      borderRadius: 5
+      borderRadius: 5,
+      width: "100%",
+      [theme.breakpoints.up("md")]: {
+        width: "60%"
+        // height: 120
+      }
     },
     textInteractive: {
       color: "white",
       textAlign: "left",
-      margin: 10
+      margin: 10,
+      fontSize: "1.5vh",
+      [theme.breakpoints.up("md")]: {
+        fontSize: 14
+      }
     },
     actionBox: {
       backgroundColor: "white",
       borderRadius: 5,
-      height: 120,
-      width: 300,
       display: "flex",
       flexWrap: "wrap",
-      justifyContent: "space-around"
+      justifyContent: "space-around",
+      marginTop: 12,
+      [theme.breakpoints.up("md")]: {
+        marginTop: 0,
+        width: 300
+        // height: 120
+      }
+    },
+    buttonStyle: {
+      width: "40%",
+      fontSize: "1.5vh",
+      margin: "5px 5px",
+      // height: 40,
+      [theme.breakpoints.up("md")]: {
+        fontSize: 14
+      }
     }
   });
 class PokeFightComponent extends Component {
@@ -116,6 +154,10 @@ class PokeFightComponent extends Component {
     return (
       <Layout containerSize={"md"}>
         <div className={classes.container}>
+          <img
+            src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/dccf9b3c-e552-4a19-ba30-2b86db58123e/dcewmcd-61655f8d-e893-45cc-9886-c8d1c9503371.png/v1/fill/w_1024,h_527,q_80,strp/forest_battle_background_by_aamatniekss_dcewmcd-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NTI3IiwicGF0aCI6IlwvZlwvZGNjZjliM2MtZTU1Mi00YTE5LWJhMzAtMmI4NmRiNTgxMjNlXC9kY2V3bWNkLTYxNjU1ZjhkLWU4OTMtNDVjYy05ODg2LWM4ZDFjOTUwMzM3MS5wbmciLCJ3aWR0aCI6Ijw9MTAyNCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.5dxJyWYKf42J-QDbSwroSssDATAqhLtnHsYLc-XBHNo"
+            style={{ width: "100%" }}
+          />
           <PokemonData data={pokemonFighters.pokemonA} />
           <PokemonData
             rightPokemon
@@ -144,17 +186,17 @@ class PokeFightComponent extends Component {
               {fightState === "standby" && (
                 <>
                   <Button
-                    style={{ margin: "10px 15px" }}
+                    className={classes.buttonStyle}
                     color="primary"
                     variant="contained"
                     onClick={() => this.setState({ fightState: "fight" })}
                   >
                     Fight!
                   </Button>
-                  <Button style={{ margin: "10px 15px" }}>Items</Button>
-                  <Button style={{ margin: "10px 15px" }}>Pokemon</Button>
+                  <Button className={classes.buttonStyle}>Items</Button>
+                  <Button className={classes.buttonStyle}>Pokemon</Button>
                   <Link href="/">
-                    <Button style={{ margin: "10px 15px" }}>Run</Button>
+                    <Button className={classes.buttonStyle}>Run</Button>
                   </Link>
                 </>
               )}
@@ -163,7 +205,7 @@ class PokeFightComponent extends Component {
                   return (
                     <Button
                       key={index}
-                      style={{ fontSize: 12, margin: "5px 5px" }}
+                      className={classes.buttonStyle}
                       onClick={() => {
                         this.battleResult(move.name);
                       }}

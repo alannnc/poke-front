@@ -11,12 +11,18 @@ import { withStyles } from "@material-ui/styles";
 const styles = theme =>
   createStyles({
     layoutContainer: {
+      justifyContent: "space-around"
+    },
+    pokemonsBox: {
       display: "flex",
       flexWrap: "wrap",
       justifyContent: "space-around"
     },
     pokemonRowBox: {
-      flex: "0 0 32%"
+      width: "45%",
+      [theme.breakpoints.up("sm")]: {
+        width: "33%"
+      }
     },
     selected: {
       borderRadius: 10,
@@ -89,26 +95,28 @@ class Index extends Component {
             <br />
             Scroll down to browse more pokemons!
           </Typography>
-          {pokemons &&
-            pokemons.map((pokemon, index) => {
-              // pokemons are 1-150..., so we do offset +1
-              const pokemonIndex = (index += 1);
-              return (
-                <div
-                  key={index + 1}
-                  className={`${classes.pokemonRowBox} ${
-                    this.state.selectedPokemon.indexOf(pokemonIndex) >= 0
-                      ? classes.selected
-                      : ""
-                  }`}
-                  onClick={() => {
-                    this.handleClick(pokemonIndex);
-                  }}
-                >
-                  <PokemonRow name={pokemon.name} index={pokemonIndex} />
-                </div>
-              );
-            })}
+          <div className={classes.pokemonsBox}>
+            {pokemons &&
+              pokemons.map((pokemon, index) => {
+                // pokemons are 1-150..., so we do offset +1
+                const pokemonIndex = (index += 1);
+                return (
+                  <div
+                    key={index + 1}
+                    className={`${classes.pokemonRowBox} ${
+                      this.state.selectedPokemon.indexOf(pokemonIndex) >= 0
+                        ? classes.selected
+                        : ""
+                    }`}
+                    onClick={() => {
+                      this.handleClick(pokemonIndex);
+                    }}
+                  >
+                    <PokemonRow name={pokemon.name} index={pokemonIndex} />
+                  </div>
+                );
+              })}
+          </div>
         </div>
       </Layout>
     );
