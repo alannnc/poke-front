@@ -7,6 +7,8 @@ import Layout from "../components/layout";
 import { PokemonRow } from "../components/pokemonRow";
 import { Typography, createStyles } from "@material-ui/core";
 import { withStyles } from "@material-ui/styles";
+import { withTranslation } from "react-i18next";
+import "../utils/i18n";
 
 const styles = theme =>
   createStyles({
@@ -77,7 +79,7 @@ class Index extends Component {
   };
 
   render() {
-    const { classes, pokemons, error } = this.props;
+    const { classes, pokemons, error, t } = this.props;
     return (
       <Layout
         containerSize={"sm"}
@@ -87,14 +89,9 @@ class Index extends Component {
         <div id={"list"} className={classes.layoutContainer}>
           {error && error.code === "ECONNREFUSED" && (
             <Typography color="primary">
-              Couldn't connect with API SERVICE: {error.message}
+              {/* {t("errorOnApi")} {error.message} */}
             </Typography>
           )}
-          <Typography style={{ margin: "10px 0" }}>
-            Select 2 pokemons to battle!
-            <br />
-            Scroll down to browse more pokemons!
-          </Typography>
           <div className={classes.pokemonsBox}>
             {pokemons &&
               pokemons.map((pokemon, index) => {

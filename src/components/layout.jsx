@@ -1,3 +1,6 @@
+import { useState } from "react";
+import Link from "next/link";
+import { useTranslation, Trans } from "react-i18next";
 import {
   Container,
   AppBar,
@@ -10,8 +13,6 @@ import {
   MenuItem
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import Link from "next/link";
-import { useState } from "react";
 
 const useStyles = makeStyles(theme => ({
   menuButton: {
@@ -33,9 +34,8 @@ const Layout = function(props) {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+  const { t } = useTranslation();
+
   return (
     <>
       <NoSsr>
@@ -53,21 +53,24 @@ const Layout = function(props) {
                 style={{ marginRight: 6, color: "black" }}
                 onClick={handleClick}
               >
-                Actions
+                <Trans i18nKey="actions"></Trans>
               </Button>
             </Hidden>
             <Menu open={Boolean(anchorEl)} anchorEl={anchorEl} keepMounted>
-              <Link href="/">
-                <MenuItem onClick={handleClose}>Home</MenuItem>
-              </Link>
+              <MenuItem>
+                <Link href="/">
+                  <span>Home</span>
+                </Link>
+              </MenuItem>
+
               <Link href="/pokefight">
-                <MenuItem onClick={handleClose}>Random Battle</MenuItem>
+                <MenuItem>Random Battle</MenuItem>
               </Link>
               {selectedPokemon && selectedPokemon.length === 2 && (
                 <Link
                   href={`/pokefight?pokemonA=${selectedPokemon[0]}&pokemonB=${selectedPokemon[1]}`}
                 >
-                  <MenuItem onClick={handleClose}>Selected Battle</MenuItem>
+                  <MenuItem>Selected Battle</MenuItem>
                 </Link>
               )}
             </Menu>
@@ -94,7 +97,14 @@ const Layout = function(props) {
             </Hidden>
           </Toolbar>
         </AppBar>
-        <Container maxWidth={props.containerSize}>{props.children}</Container>
+        <Container maxWidth={props.containerSize}>
+          <Typography style={{ margin: "10px 0" }}>
+            {t("instructionsOne")}
+            <br />
+            {t("scrollDownInstructions")}
+          </Typography>
+          {props.children}
+        </Container>
       </NoSsr>
     </>
   );
