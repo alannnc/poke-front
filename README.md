@@ -26,5 +26,5 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 ## Visualization Example
 
-![Main view]('/static/poke-front-main-window)
-![Battle view]('/static/poke-front-battle-window)
+![Main view](/static/poke-front-main-window)
+![Battle view](/static/poke-front-battle-window)
