@@ -7,6 +7,7 @@
   "routes": [
     { "src": "/api/pokemons", "dest": "http://167.172.222.243:3005/pokemons" },
     { "src": "/pokefight" },
-    { "src": "/api.fight", "dest": "http://167.172.222.243:3005/fight" }
+    { "src": "/api.fight", "dest": "http://167.172.222.243:3005/fight" },
+    { "src": "/static/pokeball.png", "dest": "/pokeball.png" }
   ]
 }
